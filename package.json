@@ -1,0 +1,36 @@
+{
+  "name": "file-based-workspace-chatbot",
+  "version": "1.0.0",
+  "description": "파일 기반 마이워크스페이스 AI 상담 시스템",
+  "main": "workspace_file_based.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "chokidar": "^4.0.3",
+    "chroma": "^0.0.1",
+    "chromadb": "^1.10.5",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.3",
+    "vectra": "^0.11.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "keywords": [
+    "chatbot",
+    "ai",
+    "openhermes",
+    "file-processing",
+    "excel",
+    "csv",
+    "document-analysis"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
