@@ -23,7 +23,7 @@ similaritySearch 함수로 유사 문서를 검색, 문서의 내용을 바탕�
 > `documents.json`의 텍스트 내용을 그냥 저장하는 것이 아니라, `nomic-embed-text`가 변환한 숫자 벡터(의미 좌표)로 저장. 
 > 키워드 검색을 넘어 "이용료가 궁금해요"처럼 의미가 비슷한 질문도 정확하게 찾아낼 수 있음.
 
-> bash
+bash
 > npm install express axios @chroma/chroma uuid
 > docker run -p 8000:8000 chromadb/chroma
 
@@ -148,6 +148,7 @@ import * as openai from 'openai';
 import * as _google_generative_ai from '@google/generative-ai'; 
 
 가 있지만 openai, @google/generative-ai는 import할 때는 비용발생X
+
 
 
 
