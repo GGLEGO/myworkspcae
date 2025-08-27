@@ -25,7 +25,7 @@ similaritySearch 함수로 유사 문서를 검색, 문서의 내용을 바탕�
 
 bash
 > npm install express axios @chroma/chroma uuid
->>docker run -p 8000:8000 chromadb/chroma
+> docker run -p 8000:8000 chromadb/chroma
 
 - **Ollama에서 다운 가능한 모델**
 > 다운로드 링크: https://ollama.com/
@@ -148,6 +148,7 @@ import * as openai from 'openai';
 import * as _google_generative_ai from '@google/generative-ai'; 
 
 가 있지만 openai, @google/generative-ai는 import할 때는 비용발생X
+
 
 
 
