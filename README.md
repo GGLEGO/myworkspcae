@@ -10,7 +10,7 @@
 문서 검색(질문 벡터와 가장 유사한 문서 벡터들을 ChromaDB에서 검색) -> 
 검색된 문서와 질문을 2차로 필터링 LLM에 전달(**RAG**과정) -> 답변 생성
 
-Langchain을 사용하지 않았지만 Langchain과 동일한 로직(workspace-chatbot.js)
+Langchain을 사용하지 않았지만 Langchain과 동일한 로직(workspace-chatbot.js)입니다
 
 ChromaVectorStore 클래스를 직접 만들어 ChromaDB에 접속하고, 
 similaritySearch 함수로 유사 문서를 검색, 문서의 내용을 바탕으로 답변 생성
@@ -48,8 +48,8 @@ bash
 bash
 > [파일이 있는 폴더]\node server.js
 
-### **항상 반드시 chromadb서버와 동시에 실행시킨 상태여야 함**
-**실행이 안 되거나 오류 발생시 종속성 설치(npm install)** 
+### **항상 반드시 chromadb서버와 동시에 실행시킨 상태여야 합니다**
+**실행이 안 되거나 오류 발생시 종속성 설치(npm install)하면 package.json의 모듈 수정되면서 오류가 해결될 것입니다.** 
 
 ### **파일 역할**
 
@@ -140,6 +140,16 @@ LLM을 사용해 사용자의 질문 의도를 파악하는 classifyQueryWithLLM
 
 평균 1분 30초 내로 답변(컴퓨터의 성능에 따라 다를 수도 있음)
 
+용량에 제한이 없다면
+llama3.3:70b(700억개 매개변수, 43G), llama3:8b(80억개 매개변수, 4.7G), 
+https://ollama.com/library/llama3.3
+
+gemma3:4b(40억개 매개변수, 3.3G)
+https://ollama.com/library/gemma3
+
+mistral:7b(70억개 매개변수, 4.4G)
+https://ollama.com/library/mistral
+
 workspace-chatbot.js의 
 
 const { ChromaClient } = require('chromadb');에서 'chromadb를 클릭할 시,
@@ -149,6 +159,7 @@ import * as openai from 'openai';
 import * as _google_generative_ai from '@google/generative-ai'; 
 
 가 있지만 openai, @google/generative-ai는 import할 때는 비용발생X
+
 
 
 
