@@ -1,4 +1,3 @@
-// chatbot-widget.js
 (function() {
     // 위젯 초기화 함수
     function initWidget() {
@@ -86,10 +85,10 @@
             }
         });
         
-        // 전송 버튼 클릭 시 메시지 전송
+        // 전송 버튼(종이비행기 아이콘) 클릭 시 메시지 전송
         sendButton.addEventListener('click', () => sendMessage(serverUrl));
         
-        // 제안 버튼 클릭 시 메시지 전송
+        //자주 묻는 질문 버튼 클릭 시 메시지 전송
         suggestionButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const questionMap = {
@@ -272,7 +271,7 @@
             }
             .myworkspace-widget-send:hover { transform: scale(1.1); }
             
-            /* 빠른 제안 */
+            /* 빠른 질문 */
             .myworkspace-quick-suggestions {
                 padding: 10px 15px; background: #f8f9fa; border-top: 1px solid #e9ecef;
             }
@@ -301,7 +300,7 @@
         document.head.appendChild(style);
     }
 
-    // DOM이 완전히 로드된 후 위젯 초기화 실행
+    // Document Object Model이 완전히 로드된 후 위젯 초기화 실행
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initWidget);
     } else {
