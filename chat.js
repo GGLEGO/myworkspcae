@@ -1,4 +1,3 @@
-// chat.js
 // demo.html의 프론트엔드 로직을 담당하는 파일
 let isProcessing = false;
 
@@ -48,7 +47,7 @@ function addMessage(type, content) {
     return messageDiv;
 }
 
-// 메시지 전송 함수 (비동기 처리)
+// 메시지 전송 함수 (비동기 처리, 사용자가 입력 후 메인 화면을 스크롤을 하거나 다른 활동을 할 수 있게 함)
 async function sendMessage() {
     if (isProcessing) return;
     
@@ -76,7 +75,7 @@ async function sendMessage() {
         </div>
     `;
 
-    // 2. "답변 생성 중..." 로딩 메시지 표시
+    // 2. 답변 "..." 로딩 메시지 표시
     const loadingMessage = addMessage('bot loading', loadingHTML);
     
     try {
