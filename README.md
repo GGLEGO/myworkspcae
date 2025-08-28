@@ -140,14 +140,15 @@ LLM을 사용해 사용자의 질문 의도를 파악하는 classifyQueryWithLLM
 
 평균 1분 30초 내로 답변(컴퓨터의 성능에 따라 다를 수도 있음)
 
-용량에 제한이 없다면
-llama3.3:70b(700억개 매개변수, 43G), llama3:8b(80억개 매개변수, 4.7G),
+
+### 용량에 제한이 없다면
+- llama3.3:70b(700억개 매개변수, 43G), llama3:8b(80억개 매개변수, 4.7G),
 > https://ollama.com/library/llama3.3
 
-gemma3:4b(40억개 매개변수, 3.3G)
+- gemma3:4b(40억개 매개변수, 3.3G)
 > https://ollama.com/library/gemma3
 
-mistral:7b(70억개 매개변수, 4.4G)
+- mistral:7b(70억개 매개변수, 4.4G)
 > https://ollama.com/library/mistral
 
 workspace-chatbot.js의 
@@ -159,6 +160,7 @@ import * as openai from 'openai';
 import * as _google_generative_ai from '@google/generative-ai'; 
 
 가 있지만 openai, @google/generative-ai는 import할 때는 비용발생X
+
 
 
 
