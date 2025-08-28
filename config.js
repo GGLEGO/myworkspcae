@@ -1,8 +1,6 @@
-// config.js
-
 class ResponseConfig {
     constructor() {
-        // ▼▼▼▼▼ 1. 키워드 구조를 카테고리별 객체로 변경 ▼▼▼▼▼
+        //1. 키워드 구조를 카테고리별 객체로 변경
         this.strictlyIrrelevantKeywords = {
             food: ['점심', '저녁', '아침', '메뉴', '음식', '식사', '맛집', '레시피', '배달'],
             dailyLife: ['날씨', '기온', '미세먼지', '교통', '수학', '계산', '환율'],
@@ -56,7 +54,7 @@ class ResponseConfig {
             return { type: 'greeting' };
         }
         
-        // ▼▼▼▼▼ 2. 카테고리화된 객체를 처리하도록 로직 수정 ▼▼▼▼▼
+        // 2. 카테고리화된 객체를 처리하도록 로직 수정
         const allIrrelevantKeywords = Object.values(this.strictlyIrrelevantKeywords).flat();
         if (allIrrelevantKeywords.some(keyword => queryLower.includes(keyword))) {
             return { type: 'strictly_irrelevant' };
