@@ -51,6 +51,8 @@ bash
 ### **항상 반드시 chromadb서버와 동시에 실행시킨 상태여야 합니다**
 **실행이 안 되거나 오류 발생시 종속성 설치(npm install)하면 package.json의 모듈 수정되면서 오류가 해결될 것입니다.** 
 
+---------------------------------------
+
 ### **파일 역할**
 
 - `documents.json` - 문서 데이터
@@ -62,6 +64,8 @@ bash
 - `server.js` - 외부(웹 브라우저)의 요청을 받아 `workspace-chatbot.js`에 전달하고, 그 결과를 다시 외부에 보내주는 '중간 다리' 역할
 
 - `chatbot-widget.js` & `demo.html` & `style.css` - 프론트엔드(UI)
+
+-----------------------------------------------
 
 ## **과정**
 ### `1.`
@@ -132,8 +136,11 @@ LLM을 사용해 사용자의 질문 의도를 파악하는 classifyQueryWithLLM
 
 ## 추가 수정할 수 있는 부분
 문서에서 토픽(llama-3-korean-bllossom-8b:Q3_K_M 임베딩 모델)으로 문서의 범위를 설정함
+
 > 핵심 키워드를 사용해 가장 관련성이 높은 문서를 찾아내는 방법이 가능한지, 성능 테스트 해야함
+ 
 > llama-3-korean-bllossom-8b:Q3_K_M = 검색 전문가
+
 > nomic-embed-text = 답변 생성 전문가
 
 **기타**
@@ -160,6 +167,7 @@ import * as openai from 'openai';
 import * as _google_generative_ai from '@google/generative-ai'; 
 
 가 있지만 openai, @google/generative-ai는 import할 때는 비용발생X
+
 
 
 
