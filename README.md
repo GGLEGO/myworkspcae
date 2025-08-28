@@ -158,6 +158,12 @@ LLM을 사용해 사용자의 질문 의도를 파악하는 classifyQueryWithLLM
 - mistral:7b(70억개 매개변수, 4.4G)
 > https://ollama.com/library/mistral
 
+### chromadb에 오류가 생기는 경우
+- docker프로그램을 직접 설치하여 실행되도록 할 수 있음
+
+https://www.docker.com/products/docker-desktop/
+
+
 workspace-chatbot.js의 
 
 const { ChromaClient } = require('chromadb');에서 'chromadb를 클릭할 시,
@@ -167,6 +173,7 @@ import * as openai from 'openai';
 import * as _google_generative_ai from '@google/generative-ai'; 
 
 가 있지만 openai, @google/generative-ai는 import할 때는 비용발생X
+
 
 
 
