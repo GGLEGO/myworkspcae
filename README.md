@@ -174,6 +174,9 @@ import * as _google_generative_ai from '@google/generative-ai';
 
 가 있지만 openai, @google/generative-ai는 import할 때는 비용발생X
 
+수정해야할 부분
+'시설'키워드가 일반적인 '주차장', '헬스장' 등으로 질문을 하면 답변을 할 수 없다고 뜨지만 '헬스장 시설', '주차장 시설'과 같이 시설을 붙이면 출력이 제대로 나오는 현상
+
 
 
 
