@@ -19,7 +19,7 @@ class ChromaVectorStore {
         try {
             this.collection = await this.client.getOrCreateCollection({
                 name: this.collectionName,
-                metadata: { "hnsw:space": "cosine" },
+                metadata: { "hnsw:space": "cosine" }, //hnsw:space = 백터 유사도 거리 함수
             });
             console.log(`✅ ChromaDB 컬렉션 "${this.collectionName}" 준비 완료`);
             return await this.collection.count();
@@ -141,24 +141,28 @@ class WorkspaceChatbot {
     }
     
     async embedAndStoreDocuments(documents) {
-        const chunksToEmbed = [];
-        const embeddingsToStore = [];
+    const chunksToEmbed = [];
+    const embeddingsToStore = [];
 
-        console.log(`📄 ${documents.length}개의 문서를 임베딩합니다...`);
-        for (const doc of documents) {
-            const chunks = this.splitIntoChunks(doc.content, 500);
-            for (const chunk of chunks) {
-                const chunkWithMetadata = { content: chunk, metadata: doc };
-                chunksToEmbed.push(chunkWithMetadata);
-                const embedding = await this.getEmbedding(chunk);
-                embeddingsToStore.push(embedding);
-            }
+    console.log(`📄 ${documents.length}개의 문서를 임베딩합니다...`);
+    for (const doc of documents) {
+        // keywords를 문자열로 변환하여 content에 추가
+        const keywordsString = doc.metadata.keywords ? doc.metadata.keywords.join(', ') : '';
+        const combinedContent = `${doc.content}. 키워드: ${keywordsString}`;
+
+        const chunks = this.splitIntoChunks(combinedContent, 500);
+        for (const chunk of chunks) {
+            const chunkWithMetadata = { content: chunk, metadata: doc.metadata };
+            chunksToEmbed.push(chunkWithMetadata);
+            const embedding = await this.getEmbedding(chunk);
+            embeddingsToStore.push(embedding);
         }
-        
-        await this.vectorStore.addDocuments(chunksToEmbed, embeddingsToStore);
-        this.documentsCount = chunksToEmbed.length;
-        console.log(`📚 ${this.documentsCount}개 문서 청크 임베딩 및 ChromaDB 저장 완료`);
     }
+
+    await this.vectorStore.addDocuments(chunksToEmbed, embeddingsToStore);
+    this.documentsCount = chunksToEmbed.length;
+    console.log(`📚 ${this.documentsCount}개 문서 청크 임베딩 및 ChromaDB 저장 완료`);
+}
     async classifyQueryWithLLM(userQuestion) {
         // LLM에게 역할을 부여하고, 선택지를 명확하게 제시하는 프롬프트
         const classificationPrompt = `
@@ -221,7 +225,7 @@ class WorkspaceChatbot {
                     console.log(`✅ 비즈니스 질문(${intent})으로 판단하여 RAG 답변을 생성합니다.`);
                     const similarChunks = await this.searchSimilarDocuments(userQuestion, 5);
                     const relevantContext = similarChunks
-                        .filter(chunk => chunk.similarity >= 0.4)
+                        .filter(chunk => chunk.similarity >= 0.3) //유사도 임계값
                         .map(item => item.document.content)
                         .join('\n\n---\n\n');
                     
@@ -236,6 +240,7 @@ class WorkspaceChatbot {
                 default:
                     // 관련 없는 질문이거나 분류에 실패한 경우
                     console.log('❌ 관련 없는 질문으로 판단하여 기본 응답을 반환합니다.');
+                    // 기본 응답: llm모델이 답별 할 수 있는 일반적인 답변
                     return "죄송하지만 문의하신 내용에 대해서는 답변해 드릴 수 없습니다. 공유오피스 관련 질문을 해주세요.";
             }
         } catch (error) {
